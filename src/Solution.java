@@ -98,6 +98,8 @@ public class Solution {
             for(LocalNode node: sol) {
                 System.out.println("node: "+node.name + ", color: " + node.myColor);
             }
+            System.out.println("This many iterations until a solution was found: " + localsearch.iteration);
+            System.out.println("How many times we restarted: " + localsearch.loops);
         } else {
             System.out.print("coloring determined by local search is not possible with " + colors.size()+"colors");
         }
