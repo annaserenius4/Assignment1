@@ -32,6 +32,8 @@ public class LocalSearch {
         int num;
         LocalNode currLocalNode;
         Set<LocalNode> completedStates;
+        public int iteration;
+        public int loops;
 
 
         public LocalSearch(Set<LocalNode> setOfStates, Map<LocalNode, List<LocalNode>> edges2, Set<String> colors2) {
@@ -45,6 +47,8 @@ public class LocalSearch {
             this.orderedLocalNodes = new LocalNode[setOfStates.size()];
             setOfStates.toArray(orderedLocalNodes);
             this.currLocalNode = orderedLocalNodes[0];
+            this.iteration = 0;
+            this.loops = 0;
         }
 
 
@@ -63,7 +67,7 @@ public class LocalSearch {
 
         //main function in class :-)
         public Set<LocalNode> getSolution() {
-            int iteration = 0;
+            iteration = 0;
             states = this.generateRandomStart();
             if (isSolution(states)) {
                 return states;
@@ -101,7 +105,8 @@ public class LocalSearch {
                     if (isSolution(states)) {
                         return states;
                     }
-                    if (iteration > 500) {
+                    if (iteration > 100) {
+                    	loops = loops + 1; //because we are restarting!
                         getSolution();
                     }
                     iteration++;
@@ -126,7 +131,7 @@ public class LocalSearch {
 
 
 
-        //tries to randomly find a neighbor that it should fix next if it has a neighbor w the same color
+        //tries to randomly find a node that it should fix next if it has a neighbor w the same color
         //if we have two possible nodes to choose, choose the one with the least number of edges:
         public LocalNode whichNeighborNext() {
 
