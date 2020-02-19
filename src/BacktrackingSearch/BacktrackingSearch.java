@@ -33,9 +33,12 @@ public class BacktrackingSearch {
         if(assigned.size() == numStates) return true;
 
         BacktrackingNode state= states.poll();
-        //selecting uncolored state
         num_steps++;
+        //selecting uncolored state
 
+
+        /*domain must be copied to avoid causing a concurrent modification error during arc consistency:
+        rc consistency attempts to modify the state's domain while execution is within the for-loop of the state's domain already*/
         Set<String> colors = new HashSet<String>();
         for(String color: state.domain) {
             colors.add(color);
@@ -63,6 +66,7 @@ public class BacktrackingSearch {
         }
         //adding state back to queue if there are no safe colorings
         states.add(state);
+
         return false;
     }
 
@@ -102,7 +106,8 @@ public class BacktrackingSearch {
 
     }
 
-    public boolean revise(BacktrackingNode X, BacktrackingNode Y, Set<BacktrackingNode> inferences) { //returns true if we revise the domain of X
+    public boolean revise(BacktrackingNode X, BacktrackingNode Y, Set<BacktrackingNode> inferences) {
+        //returns true if we revise the domain of X
         boolean revised = false;
         Set<String> toRemove = new HashSet<String>();
         X.takeSnapshot();
@@ -120,10 +125,11 @@ public class BacktrackingSearch {
             }
         }
 
-        //removing colors from domain that are not arc consistent
+        //removing colors from domain that are not arc consisten
         X.domain.removeAll(toRemove);
         if(revised) inferences.add(X);
         if(!revised) X.restoreState();
         return revised;
     }
 }
+
