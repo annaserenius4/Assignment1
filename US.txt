@@ -2,9 +2,8 @@ Red
 Green
 Blue
 Yellow
-<blank line>
+
 AL
-AK
 AZ
 AR
 CA
@@ -13,7 +12,6 @@ CT
 DE
 FL
 GA
-HI
 ID
 IL
 IN
@@ -53,7 +51,7 @@ WA
 WV
 WI
 WY
-<blank line>
+
 ME NH
 NH VT
 NH MA
@@ -141,7 +139,7 @@ SD ND
 ND MT
 MT ID
 MT WY
-WY ID
+WY ID 
 WY UT
 WY CO
 CO UT
@@ -156,6 +154,7 @@ UT NV
 UT ID
 NV CA
 NV OR
+NV ID
 ID OR
 ID WA
 CA OR
