@@ -24,21 +24,19 @@ public class Solution {
 
         File source = new File(args[0]);
         Scanner sc = new Scanner(source);
-        sc.useDelimiter("\n");
-
 
 
         while(sc.hasNext()) {
             //reading in colors
-            String line = sc.next();
-            if(line.equals("<blank line>")) break;
+            String line = sc.nextLine();
+            if(line.isEmpty()) break;
             colors.add(line);
         }
 
         while(sc.hasNext()) {
             //reading in variables
-            String line = sc.next();
-            if(line.equals("<blank line>")) break;
+            String line = sc.nextLine();
+            if(line.isEmpty()) break;
             LocalNode newLocalNode = new LocalNode(line, colors);
             BacktrackingNode newBacktrackingNode = new BacktrackingNode(line, colors);
             backsearchVariables.add(newBacktrackingNode);
